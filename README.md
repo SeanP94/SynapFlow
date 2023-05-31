@@ -1,105 +1,97 @@
-<h1 align="center"> CS481: Final Project</h1>
-<h2 align="center"> Grade Weight: 25% of course (5% bonus for publishing an app)</h2>
 
-<h4 align="center"> All deadlines are tentative (Subject to change if needed, Actual deadline will be posted on Canvas) </h4>
+# Synapflow Final Project Documentation
 
-<h4 align="center"> Proposal Presentation and proposal report Deadline: 6th WEEK</h4>
-<h4 align="center"> Mid-Progress presentation Deadline: 12th WEEK</h4>
-<h4 align="center"> Final presentation in class Deadline: 15th WEEK</h4>
-<h4 align="center"> Final written report Deadline: FINAL WEEK</h4>
-<h4 align="center"> Peer evaluation: A link will be sent from ABET in FINAL WEEK</h4>
-<h4 align="center"> Final Deliverable Deadline: FINAL WEEK</h4>
+## Abstract
+	The purpose of this project is to create a simple productivity timer and event planner app. To study via the Pomodoro Technique, studying for 25 minutes, taking a break for 5. While also creating events to keep track of and to be alerted on to make sure that you are staying on track. We believe there is a benefit for an app like this one, removing extra distractions and creating exactly what is needed to keep you motivated and on track for success. 
 
+## Description of App 
+SynapFlow is a time management app that allows you to track your study times and keep track of important events like exams, birthdays, or meetings. Features include: 
 
-The purpose of the final project is to apply mobile programming knowledge by designing and developing a real-life mobile app. This is a semester long course project. In each group, there will be 5-6 members.
-
-**Submission** 
-You have to submit all project related stuffs into this GitHub repo. You don't need to submit anything in Canvas. 
-
-**You have to pick one of the following app ideas or come up with your new idea as your final project.** 
+### Timer: Primarily structured around the Pomodoro Method (25 minutes of focused work, 5 minute break intervals). Users have the option to pause, resume, or completely stop a timed session.
+### Analytics: Tracks users' study sessions progress by tracking completed number of study sessions over the last few days, and understanding your study sessions over the last month which are visually displayed through user friendly chart graphics.
+### Tasks: Creating event tasks with short descriptions and date/timeframes to be alerted when you need to be working on something.
+### Rewards: Users can acquire achievement badges that serve as reminders of progress and accomplishments which instill a sense of motivation to study consistently and log more sessions for greater milestones.
+### Calendar: Clean user friendly calendar which serves as a hub to display all previous and newly created tasks which can be marked as complete or deleted. Dates within the calendar containing any tasks are represented by a blue dot visual so that users can identify which days contain tasks to be completed.
+Discussion 
 
 
-| App Name | Similar App |
-| --- | --- |
-| Barcode Scanner | [Barcode Scanner](https://play.google.com/store/apps/details?id=com.teacapps.barcodescanner&hl=en_US&gl=US) |
-| Habit Tracker | [Habit Tracker](https://play.google.com/store/apps/details?id=com.justorderly.dailyplanner&hl=en_US&gl=US) |
-| Business Card Reader | [Business Card Reader](https://play.google.com/store/apps/details?id=com.business.card.scanner.reader&hl=en_US&gl=US) |
-| Brain Focus | [ Brain Focus](https://play.google.com/store/apps/details?id=com.AT.PomodoroTimer&hl=en_US&gl=US) |
-| Easy voice recorder | [Easy voice recorder](https://play.google.com/store/apps/details?id=com.coffeebeanventures.easyvoicerecorder) |
-| Family locator | [Family locator](https://play.google.com/store/apps/details?id=com.sygic.familywhere.android) |
-| Youtube Channel Blocker | - |
+## List of Implemented Concept
 
-**Please don't pick To-Do or clock app**
+1.Navigation 
+The navigation bar exists inside our home activity, where it also displays the current fragment. The bar allows you to access the home timer, the analytics page, task create page, trophies, and the calendar. 
 
-**Requirements for final project:  You have to implement any 10 android concepts from the following list into your final project.**
+2.Fragments 
+Near the entirety of our application is ran inside of fragments. The only page that is not, is the main login page. We utilized Fragments for the timer, analytics, task, trophy, and calendar pages. Both plots as well are fragments inside of the analytics fragment.
 
-| API | Navigation | Fragments | WorkManager | Firebase | Room | Unit Testing (min 10 cases) |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | 
-| **ViewModel LiveData** | **MVVM Pattern** | **Repository Pattern** | **RecyclerView** | **Permission** | **Material design** | **Notifications** |
+3.Firebase
+Firebase was the core of our project's information. The first portion we implemented was the Google Authentication for the users to login with. This decision was so that we could easily deal with accounts and login systems and not have to worry about passwords and lost accounts. We then used the token UID generated as the users ID for the firestore database.
 
+In Firestore we created a database, using the UID as keys for each user, we then saved some general information, like a count of how many completed study sessions the user has completed, a long with a map of dates, with a string of the time they completed a task, so that this information could be later accessed. We didn’t fully utilize the times finished, we could have instead used a map with an int counter, but this was a part of something we attempted with the analytics.  
+	 
+4.API 
+AndroidChart API: We discovered Android chart as an alternative to AndroidPlot. The formatting, code setup, and design was significantly cleaner and we decided we wanted the format of AndroidChart for our design.
 
+Material Progress Bar: The progress bar ‘wheel’ was something we found while researching how to do the timer, via the walkthrough I began with. The wheel for the timer counts down/gradually depletes as the time counts down and ultimately disappears on completion. Functional visual element that provides users a quick and easy way to monitor the time remaining during a study session.
 
-1. **Project Proposal presentation and proposal report**
-   - Presentation
-      - You and your group will give a 10 minutes in-class presentation. 
-      - Mention you app name and group members name.
-      - Reason to choose this project.
-      - Explain potential features.
-      - Explain potential Kotlin concepts of your app.
-   - Report
-      - The length of the proposal must be more than 2 pages.
-      - You have to mention the app name and names of the group members. 
-      - Reason to choose this project.
-      - Explain potential features.
-      - Explain potential Kotlin concepts of your app.
-3. **Mid Progress Design and Code Presentation**
-   - All group members MUST be present during the mid-progress presentation to the class (unless there is an emergency such as a health or family emergency). Each member will present for around 2 minutes. Each group will get 10 minutes.
-   - You don't need to prepare slides for presentation.  
-   - In this presentation, you will show the current status of the project.  At this point of time, you should complement 50% of your code. 
-     - You will demo the current code in Android Studio.
-     - You can show the Mock up design if you have. 
-   - The instructor and your cohorts will give feedback on the project (for 2 minutes). 
-   - In summary, each group will have 12 minutes (max) for presentation and feedback. 
-4. **Final Presentation**
-   - Prepare slides for a 9 minutes presentation and project/app demo for a 3-minute presentation.  Each member will present for 2 minutes or more. 
-   - The presentation contents will be similar to your written report and submitted code. 
-   - Don’t forget to mention the challenging part in the presentation and demo your project for 3 minutes out of 12 minutes. 
-   - Don’t forget to mention the innovation and merit of your project.
-5. **Final written report (Font size: 12,  single line spacing, number of pages: 6- 8 (excluding appendix), One column format )**
-   - Summary/Abstract
-   - Introduction
-   - App description (describe different Features). You can check the app description of the square  [cash app](https://play.google.com/store/apps/details?id=com.squareup.cash)  as an example. 
-   - Discussion (challenges, innovation, merit)
-   - List of implemented concepts in your project  (e.g., API). Here, you have to mention which files you have implemented each concept in your code. 
-   - Limitations (mention any error in the application, unfinished task, any change after the proposal)
-   - A table of group members and their contributions (e.g., API implementation, UI design, writing report, etc.) to the project.
-   - Conclusion
-   - References.
-   - Appendix
-      - You have to give 2-3 page representative code screenshots of your app 
-      - All output screenshots of your app
+Calendar API: The calendar API was a github repository we found that allowed us to integrate date information to display for the user. It also was very simple for us to add tasks to it due to it being simple enough to take in a date as a key, so that we could display the information in the recycler view.
+	
+ 5. Notification
+AddTaskFragment: After a task is created in the add task fragment we create a pending intent to the NotificationBroadcastReciever (see below) with the task details. We then used the Android Alarm Manager class to set an alarm at the date and time set in the fragment in the OS to trigger that broadcast to the NotificationBroadcastReciever.
+
+NotificationBroadcastReciever: When this class receives a broadcast from the OS it builds a new notification with our channel and task details. Once that is done it will then send the notification to the user that they have a task to complete.
+
+ 6. Recycler view 
+Recycler view was used as a way to display tasks inside the calendar. Inside the calendar at the bottom, we designed it so that it displays the name, description time and if the task is completed. That way the user can keep track of the information the had described the task with. Along with being able to complete the task and delete the task from that window as well.
+
+ 7. Material Design 
+Material Design was a trickier implementation for us. We implemented our own image in the home screen of our app. We also utilized trophy images, along with icons for the navigation bar. We also changed the default color and appearance of the app, attempting to make it look more completed.
+
+ 8. Permission
+Permissions were implemented to allow for both notifications and we also implemented it to access the users location.  The notifications need the permissions to be able to run properly. While implementing the extra logic for the location was to make sure we could do as much as we can with the functionality.
+
+ 9. LiveData
+LiveData is used to store all of the variable information for the timer data. We utilized LiveData so that we can store the timer and state of the project without fear of losing the data while we access other portions of the app. Once you return the timer fragment, the app will reinitialize the timer and either continue it, continue to have it paused, or finish the timer and run the code related to the timer finishing. 
+
+ 10. Unit Testing
+Plot Unit Testing: For the plots, we created some unit tests to make sure the lines and plots were created as expected based on the map that is stored inside the function.
+
+Task Unit Testing: For the tasks, we created some tests to make sure that each of the variables within the Task object are updated and stored correctly.
+
+Calendar Unit Testing: For fun dayBinderIsCalledOnDayChanged(), this test checks to make sure that the dayBinder is working properly to update any changes made to a selected day. For fun programmaticScrollWorksAsExpected(), this test checks to confirm that the scrollToMonth correctly scrolls to the specified month.
 
 
+## Contributions
+### Sean Perry
+- Created the color design for the app.
+- Created the Analytics classes, fragments, and functions to draw and display the data to the app.
+- Created the test cases for the Plot class.
+- Implemented the Firebase authentication.
+- Implemented the main Firestore app, and created the General data types.
+- Supported Brad a small amount on the Calendars with the portion that reads in the Firestore data, and helped with the recycler view.
+- Created the timer functionality, UI for the timer, the LiveData class that .
+- Helped with minor problems, since I had a higher availability.
+### Bradley
+- Built the calendar fragment
+- Helped support Timer development
+- Researched and implemented the API for the calendar app
+- Added the test cases for the Calendar code
+- Built the functionality for bottom navigation menu
+- Implemented permissions requests to respect users privacy and preferences
+- Trevor Kvanvig
+- Implemented the rewards fragment
+- Built the integration into firebase to help the rewards functionality.
+- Supported Firestore development
+- Helped clean up on other fragments UI
+- Created the logic for each of the rewards
+### Jamison
+- Created the AddTaskFragment implementation and UI to create a new task.
+- Created the Task class that stores all of the task data.
+- Created functions in the FireStoreData class for all of the different Firestore functionality including adding a task, updating a task, deleting a task and completing a task.
+- Created the notifications for when a task is due.
+- Created test cases for the tasks.
+- Contributed in making the slides and report.
 
-6. **Peer Evaluation (Individual):** This task should not take more than 10 minutes. Every student MUST complete a peer evaluation survey to get his/her score. The survey link and the submission deadline will be available on the ABET system. It will take only a few minutes to complete this peer evaluation survey. _You will be penalized 5 points if we don't receive your peer evaluation before the deadline. The following indicators will be used in peer evaluation_. 
-   - _Listen to other teammates_: Consistently listens and responds to others appropriately
-   - _Cooperate in harmony_: Never argues with teammates negatively
-   - _Make fair decisions_: Always helps the team to reach a fair decision
-   - _Research and gather information_: Collects a great deal of information--all are relevant to the topic
-   - _Share information_: Relays all relevant information to teammates
-   - _Offer help_: Offers help proactively and all the times when asked
-   - _Full Assigned work_: Performs all assigned works
-   - _Time management_:  Hands all assignments on time
-   - _Contribute to a team meeting_: Gives all-important progress updates and contribute greatly to ideation
 
-1. **Final deliverable** The following are the final deliverables: 
-   - Peer Review: You must complete the ABET peer evaluation.
-   - Code: You have to push all project-related code in GitHub
-   - Video: You have to make a video, demo the app(If you already made demo app vedio for final presentation, you can just use it here), and show your code. You can make a 4-5 minute video. Push that in this repo.
-   - Report: You must push your proposal, and final report.
-   - Slides: You have to upload all your slides as pdf.
-
-Note: In case, you have problem with uploading big files in GitHub, you can upload big files here. [Google Drive](https://drive.google.com/drive/folders/1MEhSDHg7d9tZe557LuJtS6rk9FBeSvlv?usp=sharing)
-
-
-Your submission will be graded by simply running it and evaluating its functionality. It does not need to be perfect or bug-free to receive **partial** credit. 
+## Conclusion
+	We believe our app is a great solution to those who need something that can keep them busy studying and keep track of their tasks in one place. Using the Pomodoro Method is proven to be a strong method for studying. Viewing your completed sessions per day is valuable to keep you motivated. Tasks help you stay organized, and you can plan ahead your tasks. Rewards help you stay motivated and give you that much more to work towards. Having your schedule mapped out on a calendar is a great way to visually know what is going on. 
+	In conclusion this app allowed us to work as a team and implement an app to our expectations. We ran into issues and problems that we did not anticipate in the beginning of the project, and that caused us to scrap some portions entirely, like the work manager. We quickly adapted as a team to find a new solution and were able to bring our idea to life. We were able to avoid scope creep, and managed to keep every expectation under manageable deadlines. Our team dynamic was great throughout the entire project, and we learned a lot of lessons as a group that we plan on taking with us into our new careers as Software Engineers.
